@@ -44,11 +44,13 @@ import cors from "cors";
   );
 
   // Logger middleware using Morgan
-  app.use(
-    morgan(
-      ":date :method :url :status :response-time ms - :res[content-length]"
-    )
-  );
+  if (envConfig.dev) {
+    app.use(
+      morgan(
+        ":date :method :url :status :response-time ms - :res[content-length]"
+      )
+    );
+  }
 
   app.get("/", (_req: Request, res: Res) => {
     res.send(
